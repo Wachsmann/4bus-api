@@ -1,0 +1,91 @@
+FORMAT: 1A
+# My API
+
+Bit of a description or intro, and an introduction to how to OAuth, etc.
+
+# Group Places
+
+## Places Collection [/places]
+
+### GET
+
++ Response 200 (application/json)
+    + Attributes
+        - places (array[Trips])
+
+### POST
+
++ Request (application/json)
+    + Attributes
+        - places (Journey
+
++ Response 200 (application/json)
+    + Attributes
+        - places (Trips
+
+## Place Resource [/places/{id}]
+
++ Parameters
+  + id: `fRge5` - The unique ID of the place.
+
+### GET
+
++ Response 200 (application/json)
+    + Attributes
+        - places (StopDetector)
+
+### PUT
+
++ Request (application/json)
+    + Attributes
+        - places (Trips
+
++ Response 200 (application/json)
+    + Attributes
+        - places (Trips)
+
+### DELETE
+
++ Response 204
+
+# Data Structures
+
+## Trips (object)
++ id (number)
++ id_clients (number)
++ id_vehicles (number)
++ leave (string)
++ arrive (string)
++ status (number)
++ id_first_driver (number)
++ id_second_driver (number)
++ id_city_origin (number)
++ id_city_destiny (number)
++ city_origin_name (string)
++ city_destiny_name (string)
++ origin_abbr (string)
++ destiny_abbr (string)
++ second_driver_name (string)
++ first_driver_name (string)
++ first_driver_avatar (string)
++ second_driver_avatar (string)
++ second_driver_cpf (string)
++ first_driver_cpf (string)
+## Base (object)
++ id_trips (number, required) - Código da viagem
++ id_drivers (number, required) - Código do Motorista
++ id_vehicle (number, required) - Código do veículo 
++ lat (number, required) - Latitude 
++ lng (number, required) - Longitude
++ pdop (number, required)
++ dt (string, required) - Data e Hora do Evento 
++ imei (number, required)
+## StopDetector (Base)
++ cmp (number, required) - Código de motivo de parada
++ dsc (string, required) - Descrição do motivo de parada
+
+## Journey (Base)
++ tre (number,required) - Tipo do registro de evento
+## BeginEndTrip (Base)
++ trv  - Tipo do registro de viagem [0,1,2,3]
++ csl - Código do sentido da linha [0,1]

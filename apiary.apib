@@ -1,6 +1,8 @@
 FORMAT: 1A
+
 # 4Bus API
 HOST: http://4bus.com.br/api/
+
 # Group Conexão
 ## Checagem de Autenticação de dispositivo [/]
 
@@ -108,8 +110,7 @@ HOST: http://4bus.com.br/api/
 
         {
             "message":<errors>
-        }   
-        
+        }
 # Group Checagem
 
 
@@ -158,7 +159,14 @@ HOST: http://4bus.com.br/api/
 + second_driver_avatar (string)
 + second_driver_cpf (string)
 + first_driver_cpf (string)
-
++ itineraries (array[Itinerary])
+## Itinerary (object)
++ id (number)
++ title (string)
++ description (string)
++ lat (number) - Latitude
++ lng (number) - Longitude
++ order (number) - Ordem do Itinerário
 ## Driver (object)
 + id (number)
 + cpf (string)
@@ -169,15 +177,38 @@ HOST: http://4bus.com.br/api/
 + id_vehicle (number, required) - Código do veículo 
 + lat (number, required) - Latitude 
 + lng (number, required) - Longitude
-+ pdop (number, required)
++ pdop (number, required) - PDOP (Position Dilution of Precision) 
 + dt (string, required) - Data e Hora do Evento 
 + imei (number, required)
+
 ## StopDetector (Base)
 + cmp (number, required) - Código de motivo de parada
+    00 - parada programada
+    01 - solicitação de passageiro
+    02 - solicitação de motorista
+    03 - solicitação externa
+    04 - solicitação agente rodoviário ou fiscalização
+    05 - acidente na via
+    06 - acidente com o veículo
+    07 - acidente com passageiro
+    08 - defeito no veículo
+    09 - troca programada de veículo
+    10 - outro 
 + dsc (string, required) - Descrição do motivo de parada
 
 ## Journey (Base)
 + tre (number,required) - Tipo do registro de evento
+    00 - Fim
+    01 - Início
+    02 - Jornada em andamento
+    
 ## BeginEndTrip (Base)
 + trv  - Tipo do registro de viagem
+    0 - Fim
+    1 - Início
+    2 - Fim com Transbordo
+    3 - Início com Transbordo 
+    
 + csl - Código do sentido da linha
+    0 - Volta
+    1 - Ida

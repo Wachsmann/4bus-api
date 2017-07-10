@@ -1,0 +1,213 @@
+FORMAT: 1A
+
+# 4Bus API
+HOST: http://4bus.com.br/api/
+
+# Group Conexão
+## Checagem de Autenticação de dispositivo [/]
+
+### GET 
++ Request (application/json)
++ Response 200 (application/json)
+
+        {
+            "message": "4Bus",
+            "status": "Connected"
+        }
+## Autenticação de dispositivo [/auth]
+
+### POST
+
++ Request (application/json)
+    + Attributes
+        + imei (number)
+        + cpf (string)
+        + plate (string)
+        
++ Response 200 (application/json)        
+
+        {
+            "token": <token>,
+            "id_driver": <códigoMotorista>
+        }
++ Response 406 (application/json)
+
+        {
+            "message":<errors>
+        }
+        
+# Group Logs
+
+## Log de Início e fim de viagem [/begin-end-trips]
+
+### POST
+
++ Request Headers
+
+        + Authorization: Bearer <token>,
+        + Accept: application/json
+    
+
++ Request (application/json)
+    + Attributes
+        + log (BeginEndTrip)
+
++ Response 200 (application/json)
+
+        {
+            "success":"Salvo"
+        }
+        
++ Response 406 (application/json)
+
+        {
+            "error":<message>
+        }
+## Log de Jornada de Trabalho [/journey]
+
+### POST
+
++ Request Headers
+
+        + Authorization: Bearer <token>,
+        + Accept: application/json
+        
++ Request (application/json)
+    + Attributes
+        + log (Journey)
+
++ Response 200 (application/json)
+
+        {
+            "success":"Salvo"
+        }
+
++ Response 406 (application/json)
+
+        {
+            "message":<errors>
+        }
+## Log de Detecção de parada [/stop-detector]
+  
+### POST
+
++ Request Headers
+
+        + Authorization: Bearer <token>,
+        + Accept: application/json
+
++ Request (application/json)
+    + Attributes
+        + log (StopDetector)
+
++ Response 200 (application/json)
+
+        {
+            "success":"Salvo"
+        }
+        
++ Response 406 (application/json)
+
+        {
+            "message":<errors>
+        }
+# Group Checagem
+
+
+## Checagem de viagens [/check-trips/{imei}/{qtt}]
+
++ Parameters
+    + qtt - Quantidade de viagens atuais e ativas
+    + imei - Referente ao dispositivo
+    
+### GET
++ Response 200 (application/json)
+    + Attributes
+        + trips (array[Trip])
+      
+## Checagem de motoristas [/check-drivers/{imei}/{qtt}]
+
++ Parameters
+    + qtt - Quantidade de viagens atuais e ativas
+    + imei - Referente ao dispositivo
+    
+### GET
++ Response 200 (application/json)
+    + Attributes
+        + drivers (array[Driver])
+        
+# Data Structures
+
+## Trip (object)
++ id (number)
++ id_clients (number)
++ id_vehicles (number)
++ leave (string)
++ arrive (string)
++ status (number)
++ id_first_driver (number)
++ id_second_driver (number)
++ id_city_origin (number)
++ id_city_destiny (number)
++ city_origin_name (string)
++ city_destiny_name (string)
++ origin_abbr (string)
++ destiny_abbr (string)
++ second_driver_name (string)
++ first_driver_name (string)
++ first_driver_avatar (string)
++ second_driver_avatar (string)
++ second_driver_cpf (string)
++ first_driver_cpf (string)
++ itineraries (array[Itinerary])
+## Itinerary (object)
++ id (number)
++ title (string)
++ description (string)
++ lat (number) - Latitude
++ lng (number) - Longitude
++ order (number) - Ordem do Itinerário
+## Driver (object)
++ id (number)
++ cpf (string)
+
+## Base (object)
++ id_trips (number, required) - Código da viagem
++ id_drivers (number, required) - Código do Motorista
++ lat (number, required) - Latitude 
++ lng (number, required) - Longitude
++ pdop (number, required) - PDOP (Position Dilution of Precision) 
++ dt (string, required) - Data e Hora do Evento 
++ imei (number, required)
+
+## StopDetector (Base)
++ cmp (number, required) - Código de motivo de parada
+    00 - parada programada
+    01 - solicitação de passageiro
+    02 - solicitação de motorista
+    03 - solicitação externa
+    04 - solicitação agente rodoviário ou fiscalização
+    05 - acidente na via
+    06 - acidente com o veículo
+    07 - acidente com passageiro
+    08 - defeito no veículo
+    09 - troca programada de veículo
+    10 - outro 
++ dsc (string, required) - Descrição do motivo de parada
+
+## Journey (Base)
++ tre (number,required) - Tipo do registro de evento
+    00 - Fim
+    01 - Início
+    02 - Jornada em andamento
+    
+## BeginEndTrip (Base)
++ trv  - Tipo do registro de viagem
+    0 - Fim
+    1 - Início
+    2 - Fim com Transbordo
+    3 - Início com Transbordo 
+    
++ csl - Código do sentido da linha
+    0 - Volta
+    1 - Ida

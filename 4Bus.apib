@@ -112,10 +112,12 @@ HOST: http://4bus.com.br/api/
 
 
 ## Checagem de viagens [/check-trips/{qtt}]
++ Attributes
+    + plate (string)
 + Parameters
     + qtt - Quantidade de viagens atuais e ativas
     
-### POST
+### GET8
 + Response 200 (application/json)
     + Attributes
         + trips (array[Trip])
@@ -130,7 +132,8 @@ HOST: http://4bus.com.br/api/
 + Parameters
     + qtt - Quantidade de motoristas ativos
     
-### POST
+    
+### GET
 + Response 200 (application/json)
     + Attributes
         + drivers (array[Driver])

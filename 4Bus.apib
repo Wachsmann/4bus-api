@@ -147,40 +147,46 @@ HOST: http://4bus.com.br/api/
 # Data Structures
 
 ## Trip (object)
-+ id (number)
-+ leave (string)
-+ arrive (string)
++ id: 123 (number)
++ leave: "2022-02-12 12:02:30 +0300"  (string)
++ arrive: "2022-02-12 12:02:30 +0300"   (string)
 + status (number)
+    00 - Realizada
+    01 - Em andamento
+    02 - Cancelada
+    03 - Não iniciada
 + drivers (array[Driver])
 + destiny (City)
 + origin (City)
 + itineraries (array[Itinerary])
+
 ## Itinerary (object)
-+ id (number)
-+ title (string)
-+ description (string)
-+ lat (number) - Latitude
-+ lng (number) - Longitude
-+ order (number) - Ordem do Itinerário
++ id: 123 (number)
++ title: "Guanabara" (string)
++ description: "Descrição" (string)
++ lat: -168.59802 (number) - Latitude
++ lng: -168.59802 (number) - Longitude
++ order: 1 (number) - Ordem do Itinerário
+
 ## Driver (object)
-+ id (number)
-+ cpf (string)
-+ avatar (string)
-+ name (string)
++ id: 123 (number)
++ cpf: "231.706.051-35" (string)
++ avatar:"/storage/driver/1be0d6d2fc74a74f3144dddc18a57985.jpeg" (string)
++ name: "Caverna do dragão" (string)
 
 ## City (object)
-+ id (number)
-+ name (string)
-+ abbr (string)
++ id: 123 (number)
++ name: "Brusque" (string)
++ abbr: "SC" (string)
 
 ## Base (object)
-+ id_trips (number, required) - Código da viagem
-+ id_drivers (number, required) - Código do Motorista
-+ lat (number, required) - Latitude 
-+ lng (number, required) - Longitude
-+ pdop (number, required) - PDOP (Position Dilution of Precision) 
-+ dt (string, required) - Data e Hora do Evento 
-+ imei (number, required)
++ id_trips: 123 (number, required) - Código da viagem
++ id_drivers: 123 (number, required) - Código do Motorista
++ lat: -168.59802 (number, required) - Latitude 
++ lng: -168.59802 (number, required) - Longitude
++ pdop: 2 (number, required) - PDOP (Position Dilution of Precision) 
++ dt: "2022-02-12 12:02:30 +0300" (string, required) - Data e Hora do Evento 
++ imei: 090938120938012830 (number, required)
 
 ## StopDetector (Base)
 + cmp (number, required) - Código de motivo de parada
@@ -195,7 +201,7 @@ HOST: http://4bus.com.br/api/
     08 - defeito no veículo
     09 - troca programada de veículo
     10 - outro 
-+ dsc (string, required) - Descrição do motivo de parada
++ dsc: descrição da parada (string, required) - Descrição do motivo de parada
 
 ## Journey (Base)
 + tre (number,required) - Tipo do registro de evento

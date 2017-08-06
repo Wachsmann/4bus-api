@@ -150,7 +150,7 @@ HOST: http://4bus.com.br/api/
 + id: 123 (number)
 + leave: "2022-02-12 12:02:30 +0300"  (string)
 + arrive: "2022-02-12 12:02:30 +0300"   (string)
-+ status (number)
++ status: (number)
     00 - Realizada
     01 - Em andamento
     02 - Cancelada
@@ -159,6 +159,7 @@ HOST: http://4bus.com.br/api/
 + destiny (City)
 + origin (City)
 + itineraries (array[Itinerary])
++ current_driver: (Driver) - Caso status em andamento (01) somente
 
 ## Itinerary (object)
 + id: 123 (number)

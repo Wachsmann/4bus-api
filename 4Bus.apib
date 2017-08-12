@@ -160,6 +160,9 @@ HOST: http://4bus.com.br/api/
 + origin (City)
 + itineraries (array[Itinerary])
 + current_driver: (Driver) - Caso status em andamento (01) somente
++ current_direction: boolean
+    00 - Indo
+    01 - Voltando
 
 ## Itinerary (object)
 + id: 123 (number)
@@ -182,7 +185,6 @@ HOST: http://4bus.com.br/api/
 
 ## Base (object)
 + id_trips: 123 (number, required) - Código da viagem
-+ id_drivers: 123 (number, required) - Código do Motorista
 + lat: -168.59802 (number, required) - Latitude 
 + lng: -168.59802 (number, required) - Longitude
 + pdop: 2 (number, required) - PDOP (Position Dilution of Precision) 
@@ -205,12 +207,9 @@ HOST: http://4bus.com.br/api/
 + dsc: descrição da parada (string, required) - Descrição do motivo de parada
 
 ## Journey (Base)
-+ tre (number,required) - Tipo do registro de evento
-    00 - Fim
-    01 - Início
-    02 - Jornada em andamento
     
 ## BeginEndTrip (Base)
++ id_drivers: 123 (number, required) - Código do Motorista
 + trv  - Tipo do registro de viagem
     0 - Fim
     1 - Início

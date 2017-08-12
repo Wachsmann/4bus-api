@@ -173,7 +173,6 @@ HOST: http://4bus.com.br/api/
 + order: 1 (number) - Ordem do Itinerário
 
 ## Driver (object)
-+ id: 123 (number)
 + cpf: "231.706.051-35" (string)
 + avatar:"/storage/driver/1be0d6d2fc74a74f3144dddc18a57985.jpeg" (string)
 + name: "José Maia" (string)
@@ -207,9 +206,10 @@ HOST: http://4bus.com.br/api/
 + dsc: descrição da parada (string, required) - Descrição do motivo de parada
 
 ## Journey (Base)
-    
++ unknown_driver: '098.634.849-03' (string, optional) - CPF do Motorista
+
 ## BeginEndTrip (Base)
-+ id_drivers: 123 (number, required) - Código do Motorista
++ cpf: '098.634.849-03' (string, required) - CPF do Motorista
 + trv  - Tipo do registro de viagem
     0 - Fim
     1 - Início
